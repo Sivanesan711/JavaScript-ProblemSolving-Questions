@@ -18,7 +18,13 @@
 
   //Write your program here
   
-  ```
+  let threeSum = (unsortedArray ) => {
+  sortedArr = unsortedArray.sort((a, b) => a - b);
+  let len = unsortedArray.length;
+  let maxProduct = sortedArr[len-1] * sortedArr[len-2] * sortedArr[len-3];
+  return maxProduct;
+}
+
  
 <a name="array--consecutive--sum"></a><a name="1.2"></a>
 - **[1.2](#array--consecutive--sum) Being told that an unsorted array contains (n - 1) of n consecutive numbers (where the bounds are defined), find the missing number in `O(n)` time**
@@ -29,8 +35,17 @@
   var lowerBound = 1;
 
   //Write your program here
-  
-  ```
+
+var indexes = [];
+
+for(var i=0; i < arrayOfIntegers.length; i++) {
+    var diff = arrayOfIntegers[i+1] - arrayOfIntegers[i];
+    if(Math.abs(diff)==1 && arrayOfIntegers[i+1]+diff == arrayOfIntegers[i+2]) {
+        indexes.push(i);
+    }
+}
+console.log(indexes);
+
 
 <a name="array--unique"></a><a name="1.3"></a>
 - **[1.3](#array--unique) Removing duplicates of an array and returning an array of only unique elements**
@@ -40,8 +55,8 @@
 
    //Write your program here
 
-  
-  ```
+  let unique = [...new Set(array)];
+  console.log(unique);
 
 <a name="array--largest-difference"></a><a name="1.4"></a>
 - **[1.4](#array--largest-difference) Given an array of integers, find the largest difference between two elements such that the element of lesser value must come before the greater element**
@@ -52,8 +67,28 @@
 
   //Write your program here
 
-  ```
-  
+  var minNumber = array[0],
+    maxNumber = array[0],
+    minNumberIndex = 0,
+    maxNumberIndex = array.length - 1;
+
+for(i = 0; i < array.length; i++) {
+
+    if (array[i] < minNumber && i < maxNumberIndex) {
+        minNumber = array[i];
+        minNumberIndex = i;
+    }
+
+    if (array[i] >= maxNumber && i > minNumberIndex) {
+        maxNumber = array[i];
+        maxNumberIndex = i;
+    }
+}
+console.log(maxNumber);
+console.log("min: \t" + minNumber + "index: " + minNumberIndex);
+console.log(maxNumber - minNumber);
+
+
 <a name="array--product-other-than-itself"></a><a name="1.5"></a>
 - **[1.5](#array--product-other-than-itself) Given an array of integers, return an output array such that output[i] is equal to the product of all the elements in the array other than itself. (Solve this in O(n) without division)**
   ```javascript
@@ -63,7 +98,7 @@
 
   //Write your program here
   
-  ```
+  
  
 <a name="array--intersection"></a><a name="1.6"></a>
 - **[1.6](#array--intersection) Find the intersection of two arrays. An intersection would be the common elements that exists within both arrays. In this case, these elements should be unique!**
@@ -74,7 +109,9 @@
  
   //Write your program here
 
-  ```
+  firstArray.filter(function(n) {
+    return secondArray.indexOf(n) !== -1;
+});
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -86,7 +123,11 @@
   var string = "Welcome to this Javascript Guide!";
 
   //Write your program here
-  ```
+  
+  function reverseString(str) {
+    return str.split("").reverse().join("");
+}
+reverseString(string);
 
 <a name="string--anagram"></a><a name="2.2"></a>
 - **[2.2](#string--anagram) Given two strings, return true if they are anagrams of one another**
@@ -96,7 +137,15 @@
   var secondWord = "Army";
 
     //Write your program here
-  ```
+  
+  if (firstWord === secondWord) {
+    this.isAnagram = true;
+} else {
+    this.isAnagram = false;
+}
+
+
+
 <a name="string--palindrome"></a><a name="2.3"></a>
 - **[2.3](#string--palindrome) Check if a given string is a palindrome**
   `"racecar" is a palindrome. "race car" should also be considered a palindrome. Case sensitivity should be taken into account`
@@ -105,7 +154,19 @@
   isPalindrome("race Car"); // true
 
   //Write your program here
-  ```
+  
+  function palindrome(str) {
+
+    var len = str.length;
+    var mid = Math.floor(len/2);
+
+    for ( var i = 0; i < mid; i++ ) {
+        if (str[i] !== str[len - 1 - i]) {
+            return false;
+        }
+    }
+    return true;
+}
 
 <a name="string--isIsomorphic"></a><a name="2.3"></a>
 - **[2.4](#string--palindrome) Check if a given string is a isomorphic**
